@@ -1,5 +1,6 @@
 'use client'
 
+import { HeroShimmer } from '@/components/ui/HeroShimmer'
 import CTAButton from '@/components/ui/CTAButton'
 import FeatureBadges from '@/components/home/FeatureBadges'
 import { BestSellersSection } from '@/components/home/BestSellersSection'
@@ -34,6 +35,9 @@ export default function Home() {
         {/* Gradient overlays */}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(7,7,20,0.92) 0%, rgba(7,7,20,0.70) 45%, rgba(7,7,20,0.10) 100%)' }}/>
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 80% at 20% 50%, rgba(88,42,107,0.30) 0%, transparent 70%)' }}/>
+
+        {/* Animated shimmer overlay — sweeps across hero on all screen sizes */}
+        <HeroShimmer />
 
         {/* Hero text — centered on mobile, left-aligned on desktop */}
         <div className="relative z-10 flex items-center flex-1 px-4 sm:px-8 lg:px-0">
