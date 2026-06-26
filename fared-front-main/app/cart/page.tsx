@@ -90,6 +90,28 @@ function SidebarIcon({ name }: { name: string }) {
   return <>{s[name]}</>;
 }
 
+/* ── Trash icon SVG ── */
+function TrashIcon({ size = 20, color = "rgba(255,255,255,0.5)" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="1.5"
+      width={size}
+      height={size}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 6h18" />
+      <path d="M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2" />
+      <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" />
+      <path d="M10 11v6" />
+      <path d="M14 11v6" />
+    </svg>
+  );
+}
+
 function CartItemRow({
   item,
   onUpdateQuantity,
@@ -107,6 +129,9 @@ function CartItemRow({
     setTimeout(() => onRemove(item.id), 250);
   };
 
+  // Common height for quantity controls and remove button
+  const controlHeight = isMobile ? 38 : 42;
+
   return (
     <div
       dir="ltr"
@@ -116,7 +141,9 @@ function CartItemRow({
         gap: isMobile ? 12 : 20,
         padding: isMobile ? "12px 16px" : "16px 20px",
         margin: isMobile ? "8px 0" : "10px 0",
-        background: "rgba(255,255,255,0.07)",
+        background: isMobile ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.07)",
+        backdropFilter: isMobile ? "blur(6px)" : "none",
+        WebkitBackdropFilter: isMobile ? "blur(6px)" : "none",
         borderRadius: 16,
         border: "1px solid rgba(255,255,255,0.12)",
         transition: "opacity 0.25s ease, transform 0.25s ease",
@@ -168,7 +195,7 @@ function CartItemRow({
         <p
           style={{
             fontSize: "0.72rem",
-            color: "rgba(255,255,255,0.55)",
+            color: "rgba(255,255,255,0.75)",
             marginBottom: 6,
           }}
         >
@@ -193,10 +220,11 @@ function CartItemRow({
               alignItems: "center",
               gap: 10,
               marginTop: 8,
-              background: "rgba(255,255,255,0.1)",
+              background: "rgba(255,255,255,0.15)",
               borderRadius: 100,
               padding: "6px 12px",
-              border: "1px solid rgba(255,255,255,0.15)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              height: controlHeight, // ensure consistent height
             }}
           >
             <button
@@ -257,6 +285,7 @@ function CartItemRow({
             borderRadius: 100,
             padding: "8px 16px",
             border: "1px solid rgba(255,255,255,0.15)",
+            height: controlHeight,
           }}
         >
           <button
@@ -305,28 +334,32 @@ function CartItemRow({
         </div>
       )}
 
-      {/* Remove */}
+      {/* Remove button – now with fixed height matching quantity controls */}
       <button
         onClick={handleRemove}
         aria-label={`Remove ${item.name}`}
         style={{
           background: "none",
           border: "none",
-          color: "rgba(255,255,255,0.4)",
-          fontSize: isMobile ? "0.9rem" : "1.1rem",
+          color: "rgba(255,255,255,0.5)",
           cursor: "pointer",
-          padding: 4,
+          padding: "0 8px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: controlHeight,
+          minWidth: 40,
           transition: "color 0.2s ease",
           flexShrink: 0,
         }}
         onMouseEnter={(e) =>
-          (e.currentTarget.style.color = "rgba(255,100,100,0.8)")
+          (e.currentTarget.style.color = "rgba(255,100,100,0.9)")
         }
         onMouseLeave={(e) =>
-          (e.currentTarget.style.color = "rgba(255,255,255,0.4)")
+          (e.currentTarget.style.color = "rgba(255,255,255,0.5)")
         }
       >
-        🗑
+        <TrashIcon size={isMobile ? 22 : 20} color="currentColor" />
       </button>
     </div>
   );
@@ -379,8 +412,8 @@ export default function CartPage() {
             style={{
               flexShrink: 0,
               width: 90,
-              background: "rgba(20,8,50,0.5)",
-              backdropFilter: "blur(12px)",
+              background: "rgba(10, 2, 30, 0.75)", 
+              backdropFilter: "blur(24px)",
               borderRadius: 24,
               border: "1px solid rgba(212,175,100,0.15)",
               padding: "24px 0",
@@ -468,8 +501,8 @@ export default function CartPage() {
               style={{
                 width: "100%",
                 maxWidth: 780,
-                background: "rgba(255,240,255,0.12)",
-                backdropFilter: "blur(20px)",
+                background: "rgba(10, 2, 30, 0.75)",
+                backdropFilter: "blur(24px)",
                 WebkitBackdropFilter: "blur(20px)",
                 border: "1px solid rgba(255,255,255,0.2)",
                 borderRadius: 28,
@@ -497,18 +530,42 @@ export default function CartPage() {
       </div>
 
       {/* ─────────────────── MOBILE LAYOUT ─────────────────── */}
-      <div className="cart-mobile">
-        {/* Blurred background fill */}
+      <div
+        className="cart-mobile"
+        style={{
+          paddingTop: "70px",
+          minHeight: "100dvh",
+          position: "relative",
+          zIndex: 0,
+        }}
+      >
+        {/* ─── Background image (same as desktop) ─── */}
+        <div style={{ position: "fixed", inset: 0, zIndex: 0 }}>
+          <Image
+            src="/images/hero-backgrounds/cart-hero.webp"
+            alt=""
+            fill
+            sizes="100vw"
+            unoptimized
+            priority
+            className="object-cover object-center"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = "none";
+            }}
+          />
+        </div>
+
+        {/* ─── Dark overlay for readability ─── */}
         <div
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 0,
-            background:
-              "linear-gradient(160deg, #1a0535 0%, #0d0220 50%, #12022b 100%)",
+            zIndex: 1,
+            background: "rgba(0, 0, 0, 0.55)",
           }}
         />
-        {/* Subtle ambient glow */}
+
+        {/* ─── Subtle ambient glow ─── */}
         <div
           style={{
             position: "fixed",
@@ -520,21 +577,66 @@ export default function CartPage() {
             borderRadius: "50%",
             background:
               "radial-gradient(circle, rgba(192,100,255,0.18) 0%, transparent 70%)",
-            zIndex: 0,
+            zIndex: 2,
             pointerEvents: "none",
           }}
         />
 
-        {/* Top nav bar */}
+        {/* ─── Mobile top navigation (NAV_ITEMS) ─── */}
         <div
           style={{
             position: "relative",
-            zIndex: 2,
+            zIndex: 3,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-around",
+            padding: "12px 0 12px 0",
+            borderBottom: "1px solid rgba(255,255,255,0.07)",
+            background: "rgba(0,0,0,0.45)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+          }}
+        >
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 4,
+                textDecoration: "none",
+                opacity: 0.75,
+              }}
+            >
+              <SidebarIcon name={item.icon} />
+              <span
+                style={{
+                  fontSize: "0.58rem",
+                  color: "rgba(255,255,255,0.8)",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                {item.label}
+              </span>
+            </Link>
+          ))}
+        </div>
+
+        {/* Top bar (logo, title, cart) */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 3,
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             padding: "16px 20px",
             borderBottom: "1px solid rgba(255,255,255,0.08)",
+            background: "rgba(0,0,0,0.3)",
+            backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)",
           }}
         >
           <Link
@@ -580,13 +682,14 @@ export default function CartPage() {
               color: "#fff",
               letterSpacing: "0.04em",
               margin: 0,
+              textShadow: "0 2px 8px rgba(0,0,0,0.5)",
             }}
           >
             Shopping Cart
           </h1>
 
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 16 }}>
+            <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 16 }}>
               ♡
             </span>
             <div style={{ position: "relative" }}>
@@ -618,7 +721,7 @@ export default function CartPage() {
         <div
           style={{
             position: "relative",
-            zIndex: 2,
+            zIndex: 3,
             textAlign: "center",
             padding: "10px 0 4px",
           }}
@@ -650,7 +753,7 @@ export default function CartPage() {
         <div
           style={{
             position: "relative",
-            zIndex: 2,
+            zIndex: 3,
             flex: 1,
             overflowY: "auto",
             padding: "8px 16px 24px",
@@ -669,6 +772,10 @@ export default function CartPage() {
                 flexDirection: "column",
                 alignItems: "center",
                 gap: 16,
+                background: "rgba(0,0,0,0.3)",
+                backdropFilter: "blur(4px)",
+                borderRadius: 20,
+                marginTop: 20,
               }}
             >
               <div style={{ opacity: 0.3, fontSize: "3.5rem" }}>🔮</div>
@@ -676,7 +783,7 @@ export default function CartPage() {
                 style={{
                   fontFamily: "'Playfair Display',Georgia,serif",
                   fontSize: "1.2rem",
-                  color: "rgba(255,255,255,0.7)",
+                  color: "rgba(255,255,255,0.85)",
                   fontWeight: 400,
                   margin: 0,
                 }}
@@ -686,7 +793,7 @@ export default function CartPage() {
               <p
                 style={{
                   fontSize: "0.82rem",
-                  color: "rgba(255,255,255,0.45)",
+                  color: "rgba(255,255,255,0.6)",
                   margin: 0,
                 }}
               >
@@ -722,9 +829,9 @@ export default function CartPage() {
               position: "sticky",
               bottom: 0,
               zIndex: 10,
-              background: "rgba(18,2,43,0.92)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
+              background: "rgba(0,0,0,0.7)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
               borderTop: "1px solid rgba(255,255,255,0.12)",
               padding: "16px 20px 24px",
             }}
@@ -740,7 +847,7 @@ export default function CartPage() {
               <span
                 style={{
                   fontSize: "0.8rem",
-                  color: "rgba(255,255,255,0.5)",
+                  color: "rgba(255,255,255,0.6)",
                   letterSpacing: "0.04em",
                 }}
               >
@@ -752,6 +859,7 @@ export default function CartPage() {
                   fontWeight: 700,
                   color: "#fff",
                   fontFamily: "'Playfair Display',Georgia,serif",
+                  textShadow: "0 2px 8px rgba(0,0,0,0.5)",
                 }}
               >
                 ${totalPrice.toFixed(2)}
@@ -763,8 +871,8 @@ export default function CartPage() {
               style={{
                 width: "100%",
                 background:
-                  "linear-gradient(135deg, rgba(200,100,255,0.6), rgba(255,120,200,0.5))",
-                border: "1.5px solid rgba(220,140,255,0.7)",
+                  "linear-gradient(135deg, rgba(200,100,255,0.7), rgba(255,120,200,0.6))",
+                border: "1.5px solid rgba(220,140,255,0.8)",
                 borderRadius: 100,
                 padding: "15px 24px",
                 color: "#fff",
@@ -773,11 +881,12 @@ export default function CartPage() {
                 fontFamily: "'Playfair Display',Georgia,serif",
                 cursor: "pointer",
                 letterSpacing: "0.02em",
-                boxShadow: "0 0 30px rgba(200,100,255,0.35)",
+                boxShadow: "0 0 30px rgba(200,100,255,0.4)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 10,
+                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
               }}
             >
               <span style={{ fontSize: "1.1rem" }}>✦</span> Proceed to Checkout
@@ -786,7 +895,7 @@ export default function CartPage() {
             <p
               style={{
                 fontSize: "0.65rem",
-                color: "rgba(255,255,255,0.38)",
+                color: "rgba(255,255,255,0.5)",
                 textAlign: "center",
                 marginTop: 10,
                 display: "flex",
@@ -799,46 +908,6 @@ export default function CartPage() {
             </p>
           </div>
         )}
-
-        {/* Mobile bottom nav */}
-        <div
-          style={{
-            position: "relative",
-            zIndex: 2,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-around",
-            padding: "12px 0 max(12px, env(safe-area-inset-bottom))",
-            borderTop: "1px solid rgba(255,255,255,0.07)",
-            background: "rgba(14,4,35,0.7)",
-          }}
-        >
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 4,
-                textDecoration: "none",
-                opacity: 0.65,
-              }}
-            >
-              <SidebarIcon name={item.icon} />
-              <span
-                style={{
-                  fontSize: "0.58rem",
-                  color: "rgba(255,255,255,0.6)",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                {item.label}
-              </span>
-            </Link>
-          ))}
-        </div>
       </div>
 
       <style jsx global>{`
@@ -853,12 +922,17 @@ export default function CartPage() {
           }
         }
 
-        /* Show/hide layout variants */
+        /* Desktop layout */
         .cart-desktop {
           display: block;
         }
+
+        /* Mobile layout – hidden by default, only flex on small screens */
         .cart-mobile {
           display: none;
+          flex-direction: column;
+          background: transparent;
+          min-height: 100dvh;
         }
 
         @media (max-width: 768px) {
@@ -866,7 +940,7 @@ export default function CartPage() {
             display: none !important;
           }
           .cart-mobile {
-            display: flex;
+            display: flex !important;
             flex-direction: column;
             min-height: 100dvh;
             background: transparent;
@@ -877,7 +951,7 @@ export default function CartPage() {
   );
 }
 
-/* ── Shared panel inner (desktop only — keeps existing markup intact) ── */
+/* ── Shared panel inner (desktop only) ── */
 function CartPanelInner({
   items,
   totalPrice,
