@@ -79,7 +79,7 @@ export default function Home() {
       {/* ── REST OF PAGE — plain dark background, normal scroll ── */}
       <div style={{
         background: 'linear-gradient(135deg, #490070 0%, #5d0c99 16.7%, #7822ce 33.3%, #8f30f6 50%, #9d29fb 66.7%, #9b14db 83.3%, #8b02a6 100%)',
-        position: 'relative', zIndex: 1, paddingTop: 80,
+        position: 'relative', zIndex: 1, paddingTop: 80, paddingBottom: 40,
       }}>
         <QuoteOfTheDay />
 
@@ -100,7 +100,7 @@ export default function Home() {
           </div>
         ))}
 
-        <div className="flex justify-center px-4" style={{ marginTop: 42, marginBottom: 72 }}>
+        <div className="flex justify-center px-4" style={{ marginTop: 42 }}>
           <CTAButton href="/shop" size="large">✦ VIEW ALL ✦</CTAButton>
         </div>
       </div>
