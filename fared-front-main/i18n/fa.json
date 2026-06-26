@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "home": "خانه",
+    "shop": "فروشگاه",
+    "collections": "مجموعه‌ها",
+    "about": "درباره ما",
+    "energyGuide": "راهنمای انرژی",
+    "journal": "ژورنال",
+    "contact": "تماس با ما"
+  },
+  "shop": {
+    "addToCart": "افزودن به سبد خرید",
+    "addToWishlist": "افزودن به علاقه‌مندی‌ها",
+    "filterBy": "فیلتر بر اساس",
+    "sortBy": "مرتب‌سازی بر اساس",
+    "viewAll": "مشاهده همه",
+    "outOfStock": "ناموجود",
+    "inStock": "موجود"
+  },
+  "categories": {
+    "clothes": "پوشاک",
+    "stones": "سنگ‌ها",
+    "tours": "تورها",
+    "candles": "شمع‌ها",
+    "courses": "دوره‌ها",
+    "mentorship": "منتورشیپ",
+    "accessories": "اکسسوری"
+  },
+  "cart": {
+    "title": "سبد خرید",
+    "empty": "سبد خرید شما خالی است",
+    "subtotal": "جمع کل",
+    "checkout": "ادامه به پرداخت",
+    "remove": "حذف",
+    "quantity": "تعداد"
+  },
+  "auth": {
+    "login": "ورود",
+    "register": "ایجاد حساب",
+    "email": "آدرس ایمیل",
+    "password": "رمز عبور",
+    "name": "نام کامل",
+    "submit": "ارسال",
+    "logout": "خروج"
+  },
+  "account": {
+    "profile": "پروفایل",
+    "orders": "سفارش‌های من",
+    "wishlist": "علاقه‌مندی‌ها",
+    "editProfile": "ویرایش پروفایل"
+  },
+  "footer": {
+    "newsletter": "خبرنامه",
+    "subscribe": "عضویت",
+    "rights": "تمام حقوق محفوظ است",
+    "quickLinks": "دسترسی سریع"
+  },
+  "home": {
+    "hero_title": "انرژی خود را بیدار کنید. روح خود را ارتقا دهید.",
+    "hero_subtitle": "ابزارهای مقدس، دوره‌های تحول‌آفرین و تجربیات روح‌پرور را برای سفر معنوی خود کشف کنید.",
+    "shopNow": "خرید کنید",
+    "bookMentorship": "رزرو منتورشیپ",
+    "featuredCollections": "مجموعه‌های ویژه",
+    "spiritualQuote": "روح همیشه می‌داند که برای بهبود خود به چه چیزی نیاز دارد. چالش اینجاست که ذهن را ساکت کنیم."
+  }
+}

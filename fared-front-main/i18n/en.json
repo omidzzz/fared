@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "collections": "Collections",
+    "about": "About",
+    "energyGuide": "Energy Guide",
+    "journal": "Journal",
+    "contact": "Contact"
+  },
+  "shop": {
+    "addToCart": "Add to Cart",
+    "addToWishlist": "Add to Wishlist",
+    "filterBy": "Filter By",
+    "sortBy": "Sort By",
+    "viewAll": "View All",
+    "outOfStock": "Out of Stock",
+    "inStock": "In Stock"
+  },
+  "categories": {
+    "clothes": "Clothes",
+    "stones": "Stones",
+    "tours": "Tours",
+    "candles": "Candles",
+    "courses": "Courses",
+    "mentorship": "Mentorship",
+    "accessories": "Accessories"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "subtotal": "Subtotal",
+    "checkout": "Proceed to Checkout",
+    "remove": "Remove",
+    "quantity": "Quantity"
+  },
+  "auth": {
+    "login": "Sign In",
+    "register": "Create Account",
+    "email": "Email Address",
+    "password": "Password",
+    "name": "Full Name",
+    "submit": "Submit",
+    "logout": "Sign Out"
+  },
+  "account": {
+    "profile": "Profile",
+    "orders": "My Orders",
+    "wishlist": "Wishlist",
+    "editProfile": "Edit Profile"
+  },
+  "footer": {
+    "newsletter": "Newsletter",
+    "subscribe": "Subscribe",
+    "rights": "All rights reserved",
+    "quickLinks": "Quick Links"
+  },
+  "home": {
+    "hero_title": "Awaken Your Energy. Elevate Your Soul.",
+    "hero_subtitle": "Discover sacred tools, transformative courses, and soulful experiences curated for your spiritual journey.",
+    "shopNow": "Shop Now",
+    "bookMentorship": "Book Mentorship",
+    "featuredCollections": "Featured Collections",
+    "spiritualQuote": "The soul always knows what it needs to heal itself. The challenge is to silence the mind."
+  }
+}
