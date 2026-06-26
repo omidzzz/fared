@@ -45,16 +45,12 @@ const FEATURES = [
 
 export default function FeatureBadges() {
   return (
-    <section className="px-4 lg:px-8">
+    <section className="px-3 sm:px-4 lg:px-8">
       <div
-        className="relative mx-auto"
+        className="relative mx-auto rounded-[14px] lg:rounded-[18px] p-4 sm:p-5 lg:p-6"
         style={{
           maxWidth: 1200,
           marginTop: -72,
-          borderRadius: 18,
-          padding: '20px 32px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
           background: 'linear-gradient(160deg, rgba(59,28,110,0.5), rgba(26,12,48,0.62))',
           border: '1.5px solid rgba(231,193,111,0.42)',
           boxShadow: '0 18px 50px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08), 0 0 40px rgba(120,60,190,.2)',
@@ -66,7 +62,7 @@ export default function FeatureBadges() {
         {['-3px', '-3px', '-3px', '-3px'].map((_, i) => {
           const pos = i === 0 ? { top: -3, left: -3 } : i === 1 ? { top: -3, right: -3 } : i === 2 ? { bottom: -3, left: -3 } : { bottom: -3, right: -3 }
           return (
-            <div key={i} style={{
+            <div key={i} className="hidden lg:block" style={{
               position: 'absolute', ...pos, width: 30, height: 30,
               borderLeft: i % 2 === 0 ? '1.5px solid var(--gold-accent)' : 'none',
               borderRight: i % 2 === 1 ? '1.5px solid var(--gold-accent)' : 'none',
@@ -81,47 +77,44 @@ export default function FeatureBadges() {
           )
         })}
 
-        {FEATURES.map((f, i) => (
-          <div
-            key={i}
-            className="flex flex-col items-center text-center px-3"
-            dir="rtl"
-            style={{
-              position: 'relative',
-              borderRight: i < 3 ? '1px solid transparent' : 'none',
-              borderImage: i < 3 ? 'linear-gradient(0deg, transparent, rgba(231,193,111,0.4), transparent) 1' : undefined,
-            }}
-          >
-            {/* Icon */}
-            <div style={{
-              color: 'var(--gold-accent)',
-              filter: 'drop-shadow(0 0 10px rgba(231,193,111,0.6))',
-              marginBottom: 8,
-            }}>
-              {f.svg}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-5 sm:gap-y-6 lg:gap-0">
+          {FEATURES.map((f, i) => (
+            <div
+              key={i}
+              className={`feature-grid-cell flex flex-col items-center text-center px-2 sm:px-3 py-3 lg:py-1`}
+              dir="rtl"
+            >
+              {/* Icon */}
+              <div style={{
+                color: 'var(--gold-accent)',
+                filter: 'drop-shadow(0 0 10px rgba(231,193,111,0.6))',
+                marginBottom: 8,
+              }}>
+                {f.svg}
+              </div>
+              {/* Title */}
+              <p style={{
+                fontFamily: 'var(--fa)',
+                fontSize: 14,
+                fontWeight: 600,
+                color: 'var(--gold-accent)',
+                marginBottom: 6,
+              }}>
+                {f.titleFA}
+              </p>
+              {/* Subtitle */}
+              <p style={{
+                fontFamily: 'var(--fa)',
+                fontSize: 11.5,
+                fontWeight: 300,
+                color: 'rgba(255,248,238,0.78)',
+                lineHeight: 1.5,
+              }}>
+                {f.subtitleFA}
+              </p>
             </div>
-            {/* Title */}
-            <p style={{
-              fontFamily: 'var(--fa)',
-              fontSize: 15,
-              fontWeight: 600,
-              color: 'var(--gold-accent)',
-              marginBottom: 7,
-            }}>
-              {f.titleFA}
-            </p>
-            {/* Subtitle */}
-            <p style={{
-              fontFamily: 'var(--fa)',
-              fontSize: 12,
-              fontWeight: 300,
-              color: 'rgba(255,248,238,0.78)',
-              lineHeight: 1.5,
-            }}>
-              {f.subtitleFA}
-            </p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )

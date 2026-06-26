@@ -8,7 +8,11 @@ export default function QuoteOfTheDay() {
 
   return (
     <div style={{ padding: '40px 0 20px' }}>
-      <div onClick={() => setFlipped(f => !f)} style={{ perspective: 1000, cursor: 'pointer', maxWidth: 700, width: '100%', margin: '0 auto', padding: '0 40px', minHeight: 260 }}>
+      <div
+        onClick={() => setFlipped(f => !f)}
+        style={{ perspective: 1000, cursor: 'pointer', maxWidth: 700, width: '100%', margin: '0 auto', padding: '0 16px sm:30px lg:40px', minHeight: 260 }}
+        className="max-w-[90%] lg:max-w-none"
+      >
         <div style={{
           position: 'relative', width: '100%', minHeight: 260,
           transformStyle: 'preserve-3d',
@@ -20,11 +24,11 @@ export default function QuoteOfTheDay() {
             position: 'absolute', inset: 0, minHeight: 260, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden',
             background: 'rgba(15,8,40,0.7)', backdropFilter: 'blur(12px)',
             border: '1px solid rgba(212,175,100,0.25)', borderRadius: 20,
-            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: 32,
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '28px 20px sm:32px',
           }}>
-            <span style={{ fontSize: '2rem' }}>✦</span>
-            <p style={{ fontFamily: "'Vazirmatn','Playfair Display',serif", fontSize: '1.3rem', color: '#fff', textAlign: 'center', direction: 'rtl' }}>پیام امروزت رو کشف کن</p>
-            <p style={{ fontSize: '0.72rem', color: 'rgba(212,175,100,0.6)', letterSpacing: '0.15em' }}>TAP TO REVEAL ✦</p>
+            <span className="text-2xl lg:text-[2rem]">✦</span>
+            <p style={{ fontFamily: "'Vazirmatn','Playfair Display',serif", fontSize: 'clamp(1.05rem, 3vw, 1.3rem)', color: '#fff', textAlign: 'center', direction: 'rtl' }}>پیام امروزت رو کشف کن</p>
+            <p style={{ fontSize: 'clamp(0.6rem, 1.5vw, 0.72rem)', color: 'rgba(212,175,100,0.6)', letterSpacing: '0.15em' }}>TAP TO REVEAL ✦</p>
             {['top:16px;left:20px','top:16px;right:20px','bottom:16px;left:20px','bottom:16px;right:20px'].map(pos => (
               <span key={pos} style={{ position: 'absolute', color: 'rgba(212,175,100,0.3)', fontSize: '0.7rem', ...Object.fromEntries(pos.split(';').map(s => s.split(':'))) }}/>))}
           </div>
@@ -35,13 +39,13 @@ export default function QuoteOfTheDay() {
             transform: 'rotateY(180deg)',
             background: 'rgba(15,8,40,0.7)', backdropFilter: 'blur(12px)',
             border: '1px solid rgba(212,175,100,0.25)', borderRadius: 20,
-            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '24px 36px',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '20px 16px sm:24px 36px',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, color: 'rgba(212,175,100,0.7)', fontSize: '0.68rem', letterSpacing: '0.25em' }}>
               <span>✦</span><span>نقل قول روز</span><span>✦</span>
             </div>
             <span style={{ fontSize: '1.8rem', color: 'rgba(212,175,100,0.4)', lineHeight: 1 }}>"</span>
-            <p style={{ fontFamily: "'Vazirmatn','Playfair Display',serif", fontSize: '0.92rem', color: 'rgba(255,255,255,0.9)', textAlign: 'center', lineHeight: 1.7, direction: 'rtl' }}>
+            <p style={{ fontFamily: "'Vazirmatn','Playfair Display',serif", fontSize: 'clamp(0.8rem, 2.5vw, 0.92rem)', color: 'rgba(255,255,255,0.9)', textAlign: 'center', lineHeight: 1.7, direction: 'rtl' }}>
               بیا که قصر امل سخت سست بنیاد است<br/>بیار باده که بنیاد عمر بر باد است
             </p>
             <p style={{ fontSize: '0.72rem', color: 'rgba(212,175,100,0.65)', fontStyle: 'italic' }}>— حافظ</p>
