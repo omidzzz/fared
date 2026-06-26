@@ -45,6 +45,9 @@ Unified the desktop-only and mobile-only layouts into a single fully responsive 
   - Mobile (≤1024px): bottom border on top 2 cells, right border on the 2nd and 4th cells (RTL aware).
   - Desktop (>1024px): right border on first 3 cells only.
 
+### Fix after first feedback
+- **CTA button center on mobile**: Added `items-center lg:items-start` to the hero text container to center the "اکنون کشف کن" button on mobile while keeping it left-aligned on desktop.
+
 ## Testing Notes
 - Test on mobile (375px+), tablet (768px+), and desktop (1024px+).
 - Verify RTL rendering is correct at all breakpoints.
