@@ -30,7 +30,7 @@ export default function Home() {
       <section style={{
         backgroundImage: 'url(/images/hero-backgrounds/home-page-hero.webp)',
         backgroundSize: 'cover', backgroundPosition: 'center 42%',
-        minHeight: '100dvh', position: 'relative', display: 'flex', flexDirection: 'column', overflow: 'visible',
+        minHeight: '100dvh', position: 'relative', display: 'flex', flexDirection: 'column', overflow: 'hidden',
       }}>
         {/* Gradient overlays */}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(7,7,20,0.92) 0%, rgba(7,7,20,0.70) 45%, rgba(7,7,20,0.10) 100%)' }}/>
@@ -71,7 +71,7 @@ export default function Home() {
         </div>
 
         {/* Feature badges at bottom of hero — overlapping boundary */}
-        <div className="relative z-10" style={{ marginTop: 80, marginBottom: -60, padding: '0 16px sm:0 24px lg:0 40px' }}>
+        <div className="relative z-10" style={{ marginTop: 80, marginBottom: -60, padding: '0 16px sm:0 24px lg:0 40px', maxWidth: '100%', overflowX: 'hidden' }}>
           <FeatureBadges />
         </div>
       </section>
