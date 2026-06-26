@@ -10,8 +10,8 @@ export default function QuoteOfTheDay() {
     <div style={{ padding: '40px 0 20px' }}>
       <div
         onClick={() => setFlipped(f => !f)}
-        style={{ perspective: 1000, cursor: 'pointer', maxWidth: 700, width: '100%', margin: '0 auto', padding: '0 16px sm:30px lg:40px', minHeight: 260 }}
-        className="max-w-[90%] lg:max-w-none"
+        style={{ perspective: 1000, cursor: 'pointer', maxWidth: 700, width: '100%', margin: '0 auto', minHeight: 260 }}
+        className="px-4 sm:px-8 lg:px-10"
       >
         <div style={{
           position: 'relative', width: '100%', minHeight: 260,

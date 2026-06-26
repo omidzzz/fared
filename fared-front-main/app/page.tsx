@@ -100,7 +100,7 @@ export default function Home() {
           </div>
         ))}
 
-        <div className="flex justify-center px-4" style={{ marginTop: 42, marginBottom: 56 }}>
+        <div className="flex justify-center px-4" style={{ marginTop: 42, marginBottom: 72 }}>
           <CTAButton href="/shop" size="large">✦ VIEW ALL ✦</CTAButton>
         </div>
       </div>
