@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-import { HeroShimmer } from '@/components/ui/HeroShimmer'
 import CTAButton from '@/components/ui/CTAButton'
 import FeatureBadges from '@/components/home/FeatureBadges'
 import { BestSellersSection } from '@/components/home/BestSellersSection'
@@ -36,19 +34,6 @@ export default function Home() {
         {/* Gradient overlays */}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(7,7,20,0.92) 0%, rgba(7,7,20,0.70) 45%, rgba(7,7,20,0.10) 100%)' }}/>
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 80% at 20% 50%, rgba(88,42,107,0.30) 0%, transparent 70%)' }}/>
-
-        {/* Mobile hero image — visible on small screens only */}
-        <div className="relative lg:hidden w-full h-[40vh] min-h-[260px]" style={{ flexShrink: 0 }}>
-          <Image
-            src="/images/hero-backgrounds/home-page-hero.webp"
-            alt=""
-            fill
-            className="object-cover object-top"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-transparent"/>
-          <HeroShimmer/>
-        </div>
 
         {/* Hero text — centered on mobile, left-aligned on desktop */}
         <div className="relative z-10 flex items-center flex-1 px-4 sm:px-8 lg:px-0">

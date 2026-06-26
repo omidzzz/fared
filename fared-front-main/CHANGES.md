@@ -48,6 +48,10 @@ Unified the desktop-only and mobile-only layouts into a single fully responsive 
 ### Fix after first feedback
 - **CTA button center on mobile**: Added `items-center lg:items-start` to the hero text container to center the "اکنون کشف کن" button on mobile while keeping it left-aligned on desktop.
 
+### Fix after second feedback — duplicate hero images on mobile
+- **Removed the separate mobile `<Image>` block** that was visible via `lg:hidden` class. The CSS `backgroundImage` on the `<section>` already renders the hero image on all screen sizes. The extra `<Image>` component (with `HeroShimmer`) created a double-image overlay on mobile.
+- Cleaned up unused imports (`Image`, `HeroShimmer`).
+
 ## Testing Notes
 - Test on mobile (375px+), tablet (768px+), and desktop (1024px+).
 - Verify RTL rendering is correct at all breakpoints.
