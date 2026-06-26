@@ -42,7 +42,7 @@ export default function Home() {
         {/* Hero text — centered on mobile, left-aligned on desktop */}
         <div className="relative z-10 flex items-center flex-1 px-4 sm:px-8 lg:px-0">
           <section className="flex items-center w-full" dir="ltr">
-            <div className="flex flex-col justify-center items-center lg:items-start lg:pr-16 xl:pr-24 w-full lg:w-1/2 lg:pl-8 text-center lg:text-right" dir="rtl">
+            <div className="flex flex-col justify-center items-center lg:items-start lg:pr-16 xl:pr-24 w-full lg:w-1/2 lg:pl-8 text-center lg:text-right mt-20 sm:mt-24 lg:mt-0" dir="rtl">
               <h1 className="font-farsi font-bold leading-snug mb-4 mt-4 lg:mt-0" style={{
                 fontSize: 'clamp(2rem, 6vw, 5.5rem)',
                 background: 'linear-gradient(140deg, #FECB7D 0%, #f5dfa0 40%, #f0ebe3 65%, #FECB7D 100%)',
